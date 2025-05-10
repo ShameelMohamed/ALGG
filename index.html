@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ALGG</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 2rem;
+      background-color: white;
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .button-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+
+    button {
+      background-color: white;
+      border: none; /* No border */
+      font-size: 1rem;
+      cursor: pointer;
+      padding: 0.4rem 0.8rem;
+    }
+
+    textarea {
+      width: 80%;
+      height: 200px;
+      border: none;
+      background: white;
+      font-size: 1rem;
+      resize: vertical;
+      outline: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="button-container">
+    <button onclick="copyText(a)">Linear Search</button>
+    <button onclick="copyText(b)">Binary Search</button>
+    <button onclick="copyText(c)">Naive Pattern</button>
+    <button onclick="copyText(d)">Insertion Sort</button>
+    <button onclick="copyText(e)">BFS</button>
+    <button onclick="copyText(f)">DFS</button>
+    <button onclick="copyText(g)">MIN MAX</button>
+    <button onclick="copyText(h)">Quick Sort</button>
+    <button onclick="copyText(i)">Merge Sort</button>
+    <button onclick="copyText(j)">Floyd</button>
+    <button onclick="copyText(k)">Warshall</button>
+    <button onclick="copyText(l)">Prims</button>
+    <button onclick="copyText(m)">Dijkstra</button>
+    <button onclick="copyText(n)">nQueens</button>
+    <button onclick="copyText(o)">TSP</button>
+    <button onclick="copyText(p)">kth small</button>
+  </div>
+
+  
+  <script>
+    const a = `class Search
+{
+	public void linearsearch()
+	{
+		int a[] = {5, 42, 82, 1, 45, 98, 635, 85, 56, 35};
+		int key = 10, flag = 0;
+		System.out.println("Lenght = " + a.length);
+		for(int i = 0; i < a.length; i++)
+		{
+			if(a[i] == key)
+			{
+				System.out.println(key + " found at index " + i);
+				flag = 1;
+				break;
+			}
+		}
+		if(flag == 0)
+		{
+			System.out.println(key + " not found in the array.");
+		}
+	}
+}
+
+public class LinearSearch
+{
+	public static void main(String args[])
+	{
+		double second;
+		Search ls = new Search();
+		long start = System.nanoTime();
+		ls.linearsearch();
+		long end = System.nanoTime();
+		System.out.println("Time taken to execute (in nano seconds): " + (end - start));
+		second = ((end - start)/1000000000.0);
+		System.out.println("Time taken to execute (in seconds): " + second);
+	}
+}
+
+/*-----------------Output------------------
+
+a.length = 10
+Time taken to execute (in nano seconds): 489300
+Time taken to execute (in seconds): 4.893E-4
+
+a.length = 50
+Time taken to execute (in nano seconds): 708700
+Time taken to execute (in seconds): 7.087E-4
+
+a.length = 150
+Time taken to execute (in nano seconds): 873900
+Time taken to execute (in seconds): 8.739E-4
+
+a.length = 450
+Time taken to execute (in nano seconds): 1475300
+Time taken to execute (in seconds): 0.0014753
+
+a.length = 2700
+Time taken to execute (in nano seconds): 828200
+Time taken to execute (in seconds): 8.282E-4
+
+*/
+`;
+    const b = `import time
+def binary_search(arr, key):
+    last = len(arr) - 1
+    start = 0
+    flag = 0
+    while start < last:
+        mid = (start + last) // 2
+        if arr[mid] == key:
+            print(key, "found at index", mid)
+            flag = 1
+            break
+        elif arr[mid] > key:
+            last = mid - 1
+        else:
+            start = mid + 1
+    if flag == 0:
+        print("Element not found in the array")
+
+key = int(input("Enter the element to search in the array : "))
+start = time.time()
+binary_search([1, 2, 3, 4, 5, 6, 7, 8, 9], key)
+end = time.time()
+
+print("Time elapsed :", end - start)
+
+
+Output:
+
+Enter the element to search in the array : 5
+5 found at index 4
+Time elapsed : 0.015427112579345703
+
+Enter the element to search in the array : 10
+Element not found in the array
+Time elapsed : 0.015447854995727539
+
+Enter the element to search in the array : -5
+Element not found in the array
+Time elapsed : 0.015650272369384766
+
+Enter the element to search in the array : 9
+Element not found in the array
+Time elapsed : 0.015430927276611328
+`;
+    const c = `import time
+
+def naive_pattern_search(txt, pat):
+    n = len(txt)
+    m = len(pat)
+    flag = 0
+    for i in range(n - m + 1):
+        match = ""
+        for j in range(i, i + m):
+            match += txt[j]
+        if match == pat:
+            print("Pattern found at index :", i)
+            flag = 1
+    if flag == 0:
+        print("Pattern not found in the text")
+
+txt = input("Enter the text : ")
+pat = input("Enter the pattern : ")
+
+start = time.time()
+naive_pattern_search(txt, pat)
+end = time.time()
+print("Time elapsed :", end - start)
+
+
+Output :
+
+Enter the text : Saranathan College of Engineering
+Enter the pattern : College
+Pattern found at index : 11
+Time elapsed : 0.015462398529052734
+
+
+Enter the text : aabckdsa
+Enter the pattern : sbc
+Pattern not found in the text
+Time elapsed : 0.015468358993530273
+
+
+Enter the text : aaaaaabbbbbbcccccdddddeeeeeffffffaaaaabbbbbbccccccddddddeeeeefffff
+Enter the pattern : ffaaaaab
+Pattern found at index : 31
+Time elapsed : 0.015465687124935412
+
+
+Enter the text : abcdefghijklmnopqrstuvwxyz
+Enter the pattern : tuv
+Pattern found at index : 19
+Time elapsed : 0.013486596632541272
+
+
+Enter the text : This is naive pattern search program using python
+Enter the pattern : program
+Pattern found at index : 29
+Time elapsed : 0.015420913696289062
+`;
+    const d = `import time
+
+def insertion_sort(a, n):
+    for i in range(n):
+        key = a[i]
+        j = i - 1
+        while((j >= 0) and (a[j] > key)):
+            a[j + 1] = a[j]
+            j = j - 1
+        a[j + 1] = key
+    print(a)
+
+a = [11, 12, 52, 69, 35, 24, 10, 625, 456, 635, 259, 223]
+start = time.time()
+insertion_sort(a, len(a))
+end = time.time()
+res = (end - start)
+print("Time elapsed :", res, "sec")
+
+
+Output :
+
+inp = [15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+Time elapsed : 0.015433788299560547 sec
+
+
+inp = [11, 12, 52, 69, 35, 24, 10, 625, 456, 635, 259, 223]
+[10, 11, 12, 24, 35, 52, 69, 223, 259, 456, 625, 635]
+Time elapsed : 0.015472412109375 sec
+
+
+inp = [56, 86, 4, 3, 58, 9, 3, 87, 8, 6, 54, 894, 354, 89, 6, 4, 8, 3, 4, 9, 5, 46, 878, 48, 98]
+[3, 3, 3, 4, 4, 4, 5, 6, 6, 8, 8, 9, 9, 46, 48, 54, 56, 58, 86, 87, 89, 98, 354, 878, 894]
+Time elapsed : 0.015431880950927734 sec
+
+
+inp = [987, 654, 321, 159, 753, 79, 13, 17, 39, 71, 93, 97, 93, 91, 19, 73, 79, 68, 24, 86, 42]
+[13, 17, 19, 24, 39, 42, 68, 71, 73, 79, 79, 86, 91, 93, 93, 97, 159, 321, 654, 753, 987]
+Time elapsed : 0.01543116569519043 sec`;
+    const e = `import time
+
+graph = {
+    '5' : ['3', '7'],
+    '3' : ['2', '4'],
+    '7' : ['8'],
+    '2' : [],
+    '4' : ['8'],
+    '8' : []
+    }
+
+visited = []
+queue = []
+
+def bfs(visited, graph, node):
+    visited.append(node)
+    queue.append(node)
+    while queue:
+        m = queue.pop(0)
+        print(m, end=" ")
+        for neighbour in graph[m]:
+            if neighbour not in visited:
+                visited.append(neighbour)
+                queue.append(neighbour)
+
+print("Following is the Breadth First Search")
+start = time.time()
+bfs(visited, graph, '5')
+end = time.time()
+res = (end - start)
+print("\nTime elapsed =", res, "sec")
+
+Output:
+
+Following is the Breadth First Search
+2 
+Time elapsed = 0.01546168327331543 sec
+
+
+Following is the Breadth First Search
+3 2 4 8 
+Time elapsed = 0.03120899200439453 sec
+
+
+Following is the Breadth First Search
+7 8 
+Time elapsed = 0.015619039535522461 sec
+
+
+Following is the Breadth First Search
+5 3 7 2 4 8 
+Time elapsed = 0.015609979629516602 sec
+
+
+Following is the Breadth First Search
+4 8 
+Time elapsed = 0.015671491622924805 sec
+`;
+    const f = `def dfs(graph, node, goal_node):
+    stack = [node]
+    visited = []
+    while stack:
+        v = stack.pop()
+        print(v)
+        visited.append(v)
+        if v == goal_node:
+            print("Goal Reached.")
+            break
+        else:
+            elements = graph[v]
+            elements.reverse()
+            for i in elements:
+                if i not in visited:
+                    stack.append(i)
+    else:
+        print("Goal not found.")
+
+graph = {
+    'A' : ['B', 'C'],
+    'B' : ['D', 'E'],
+    'C' : [],
+    'D' : [],
+    'E' : ['F', 'G'],
+    'F' : [],
+    'G' : []
+}
+goal_node = input("Enter the goal node : ")
+start = time.time()
+dfs(graph, 'A', goal_node)
+end = time.time()
+print("Time elapsed :", (end - start))
+
+
+Output:
+
+Following is the Depth-First Search
+Enter the goal node : C
+A
+B
+D
+E
+F
+G
+C
+Goal Reached
+Time elapsed : 0.03121042251586914
+
+
+Following is the Depth-First Search
+Enter the goal node : B
+A
+B
+Goal Reached
+Time elapsed : 0.015605688095092773
+
+
+Following is the Depth-First Search
+Enter the goal node : N
+A
+B
+D
+E
+F
+G
+C
+Goal not found
+Time elapsed : 0.031218767166137695
+
+
+Following is the Depth-First Search
+Enter the goal node : A
+A
+Goal Reached
+Time elapsed : 0.0156097412109375
+
+
+Following is the Depth-First Search
+Enter the goal node : E
+A
+B
+D
+E
+Goal Reached
+Time elapsed : 0.031210660934448242
+`;
+    const g = `import time
+
+def MinMax(nums, left, right, minmax):
+    if(left == right):
+        if(minmax[0] < nums[left]):
+            minmax[0] = nums[left]
+        if(minmax[1] > nums[right]):
+            minmax[1] = nums[right]
+        return
+
+    if(right - left == 1):
+        if(nums[left] < nums[right]):
+            if(minmax[1] > nums[left]):
+                minmax[1] = nums[left]
+            if(minmax[0] < nums[right]):
+                minmax[0] = nums[right]
+        else:
+            if(minmax[1] > nums[right]):
+                minmax[1] = nums[right]
+            if(minmax[0] < nums[left]):
+                minmax[0] = nums[left]
+        return
+    
+    mid = (left + right) // 2
+    MinMax(nums, left, mid, minmax)
+    MinMax(nums, mid + 1, right, minmax)
+
+inf = 99999
+nums = [7, 2, 19, 3, 11, 6, 7, 8, 4]
+minmax = [-inf, inf]    # minmax[max_element, min_element]
+
+start = time.time()
+MinMax(nums, 0, len(nums) - 1, minmax)
+
+
+print(nums)
+print("The minimum element in the array is :", minmax[1])
+print("The maximum element in the array is :", minmax[0])
+end = time.time()
+print("Time stamp :", (end - start))
+
+
+Output :
+
+[7, 2, 19, 3, 11, 6, 7, 8, 4]
+The minimum element in the array is : 2
+The maximum element in the array is : 19
+Time stamp : 0.048134803771972656
+
+
+[2, 58, 78, -54, -3, 5, 56, 47]
+The minimum element in the array is : -54
+The maximum element in the array is : 78
+Time stamp : 0.032379150390625
+
+
+[150, 364, -86, 352, 125, -562, 846, -523]
+The minimum element in the array is : -562
+The maximum element in the array is : 846
+Time stamp : 0.03127431869506836
+
+`;
+    const h = `import time
+
+def partition(array, low, high):
+	pivot = array[high]
+	i = low - 1
+	for j in range(low, high):
+		if array[j] <= pivot:
+			i = i + 1
+			(array[i], array[j]) = (array[j], array[i])
+	(array[i + 1], array[high]) = (array[high], array[i + 1])
+	return i + 1
+
+def quickSort(array, low, high):
+	if low < high:
+		pi = partition(array, low, high)
+		quickSort(array, low, pi - 1)
+		quickSort(array, pi + 1, high)
+
+data = [5, 20, -4, 56, 3, 25]
+print("Unsorted Array")
+print(data)
+size = len(data)
+start = time.time()
+quickSort(data, 0, size - 1)
+print('Sorted Array in Ascending Order:')
+print(data)
+end = time.time()
+print("Time elapsed :", (end - start))
+
+
+Output :
+
+Unsorted Array
+[1, 7, 4, 1, 10, 9, -2, 5, 11, -20]
+Sorted Array in Ascending Order:
+[-20, -2, 1, 1, 4, 5, 7, 9, 10, 11]
+Time elapsed : 0.015621662139892578
+
+Unsorted Array
+[20, 50, 30, 10, 60, 40]
+Sorted Array in Ascending Order:
+[10, 20, 30, 40, 50, 60]
+Time elapsed : 0.015619277954101562
+
+Unsorted Array
+[5, 20, -4, 56, 3, 25]
+Sorted Array in Ascending Order:
+[-4, 3, 5, 20, 25, 56]
+Time elapsed : 0.015629053115844727
+`;
+    const i = `import time
+
+def merge(arr, l, m, r):
+	n1 = m - l + 1
+	n2 = r - m
+	L = []
+	R = []
+	for i in range(0, n1):
+		L.append(arr[l + i])
+
+	for j in range(0, n2):
+		R.append(arr[m + 1 + j])
+	i = 0
+	j = 0
+	k = l
+	while i < n1 and j < n2:
+		if L[i] <= R[j]:
+			arr[k] = L[i]
+			i += 1
+		else:
+			arr[k] = R[j]
+			j += 1
+		k += 1
+	while i < n1:
+		arr[k] = L[i]
+		i += 1
+		k += 1
+	while j < n2:
+		arr[k] = R[j]
+		j += 1
+		k += 1
+def mergeSort(arr, l, r):
+	if l < r:
+		m = l+(r-l)//2
+		mergeSort(arr, l, m)
+		mergeSort(arr, m+1, r)
+		merge(arr, l, m, r)
+
+arr = [-1, -2, 2, -3, 3, -4, 4, -5, 5]
+n = len(arr)
+print("Given array is")
+print(arr)
+start = time.time()
+mergeSort(arr, 0, n-1)
+end = time.time()
+print("Sorted array is")
+print(arr)
+print("Time elapsed :", (end - start))
+
+
+Output:
+
+Given array is
+[12, 11, 13, 5, 6, 7, 15, 1]
+Sorted array is
+[1, 5, 6, 7, 11, 12, 13, 15]
+Time elapsed : 0.156216621268531494
+
+Given array is
+[-5, 3, 10, -10, 5, 36, 42]
+Sorted array is
+[-10, -5, 3, 5, 10, 36, 42]
+Time elapsed : 0.093658964126791002
+
+Given array is
+[-1, -2, 2, -3, 3, -4, 4, -5, 5]
+Sorted array is
+[-5, -4, -3, -2, -1, 2, 3, 4, 5]
+Time elapsed : 0.095910675314683219`;
+    const j = `import time
+
+inf = 9999
+
+D = [[0, 8, inf, 1],
+     [inf, 0, 1, inf],
+     [4, inf, 0, inf],
+     [inf, 2, 9, 0]]
+
+n = 4
+
+start = time.time()
+for k in range(n):
+    for i in range(n):
+        for j in range(n):
+            if(D[i][j] > (D[i][k] + D[k][j])):
+                D[i][j] = D[i][k] + D[k][j]
+
+for i in range(n):
+    print("\n")
+    for j in range(n):
+        print(D[i][j], "\t", end="")
+end = time.time()
+
+print("\nTime elapsed :", (end - start))
+
+
+
+output
+        
+0 	3 	4 	1 	
+
+5 	0 	1 	6 	
+
+4 	7 	0 	5 	
+
+7 	2 	3 	0
+Time elapsed : 0.09369444847106934
+`;
+    const k = `import time
+
+T = [[0, 1, 0, 0],
+     [0, 0, 0, 1],
+     [0, 0, 0, 0],
+     [1, 0, 1, 0]]
+
+n = 4
+
+def Warshall_Algorithm(T):
+    for k in range(n):
+        for i in range(n):
+            for j in range(n):
+                T[i][j] = T[i][j] or (T[i][k] and T[k][j])
+
+    for i in range(n):
+        print("\n")
+        for j in range(n):
+            print(T[i][j], "\t", end="")
+
+start = time.time()
+Warshall_Algorithm(T)
+end = time.time()
+print("\nTime stamp :", (end - start), "sec")
+
+Output:
+
+1 	1 	1 	1 	
+
+1 	1 	1 	1 	
+
+0 	0 	0 	0 	
+
+1 	1 	1 	1 	
+Time stamp : 0.07810807228088379 sec
+`;
+    const l = `#include <stdio.h>
+#include <conio.h>
+#define SIZE 20
+#define alpha 99
+void Prim(int G[][SIZE], int nodes)
+{
+    int tree[SIZE], i, j, k;
+    int min_dist, v1, v2, total = 0;
+    for (i = 0; i < nodes; i++)
+        tree[i] = 0;
+    printf("\n The minimum spanning tree is :\n");
+    tree[0] = 1;
+    for (k = 1; k <= nodes - 1; k++)
+    {
+        min_dist = alpha;
+        for (i = 0; i <= nodes - 1; i++)
+        {
+            for (j = 0; j <= nodes - 1; j++)
+            {
+                if (G[i][j] && ((tree[i] && !tree[j]) || (!tree[i] && tree[j])))
+                {
+                    if (G[i][j] < min_dist)
+                    {
+                        min_dist = G[i][j];
+                        v1 = i;
+                        v2 = j;
+                    }
+                }
+            }
+        }
+        printf("\n Edge (%d %d) and weight = %d", v1, v2, min_dist);
+        tree[v1] = tree[v2] = 1;
+        total = total + min_dist;
+    }
+    printf("\n Total Path Length is = %d", total);
+}
+void main()
+{
+    int G[SIZE][SIZE], nodes;
+    int v1, v2, length, i, j, n;
+    printf("\n PRIM'S ALGORITHM");
+    printf("\n Enter number of nodes in the Graph : ");
+    scanf("%d", &nodes);
+    printf("\n Enter number of edges in the Graph : ");
+    scanf("%d", &n);
+    for (i = 0; i < nodes; i++)
+        for (j = 0; j < nodes; j++)
+            G[i][j] = 0;
+    printf("\n Enter edges and weights");
+    for (i = 0; i < n; i++)
+    {
+        printf("\n Enter edge by v1 and v2");
+        printf("\n Read the graph from starting node 0\n");
+        printf("\n Enter v1 :");
+        scanf("%d", &v1);
+        printf("\n Enter v2 :");
+        scanf("%d", &v2);
+        printf("\n Enter corresponding weight: ");
+        scanf("%d", &length);
+        G[v1][v2] = G[v2][v1] = length;
+    }
+    printf("\n\t");
+    Prim(G, nodes);
+}
+
+Output :
+
+ PRIM'S ALGORITHM
+ Enter number of nodes in the Graph : 5
+
+ Enter number of edges in the Graph : 7
+
+ Enter edges and weights
+ Enter edge by v1 and v2
+ Read the graph from starting node 0
+
+ Enter v1 :0
+
+ Enter v2 :1
+
+ Enter corresponding weight: 10
+
+ Enter edge by v1 and v2
+ Read the graph from starting node 0
+
+ Enter v1 :1
+
+ Enter v2 :2
+
+ Enter corresponding weight: 1
+
+ Enter edge by v1 and v2
+ Read the graph from starting node 0
+
+ Enter v1 :2
+
+ Enter v2 :3
+
+ Enter corresponding weight: 2
+
+ Enter edge by v1 and v2
+ Read the graph from starting node 0
+
+ Enter v1 :3
+
+ Enter v2 :4
+
+ Enter corresponding weight: 3
+
+ Enter edge by v1 and v2
+ Read the graph from starting node 0
+
+ Enter v1 :4
+
+ Enter v2 :0
+
+ Enter corresponding weight: 5
+
+ Enter edge by v1 and v2
+ Read the graph from starting node 0
+
+ Enter v1 :1
+
+ Enter v2 :3
+
+ Enter corresponding weight: 6
+
+ Enter edge by v1 and v2
+ Read the graph from starting node 0
+
+ Enter v1 :4
+
+ Enter v2 :2
+
+ Enter corresponding weight: 7
+
+
+ The minimum spanning tree is :
+
+ Edge (0 4) and weight = 5
+ Edge (3 4) and weight = 3
+ Edge (2 3) and weight = 2
+ Edge (1 2) and weight = 1
+ Total Path Length is = 11
+
+
+`;
+    const m = `#include <stdio.h>
+#include <conio.h>
+#define alpha 99
+#define MAX 10
+void dijkstra(int G[MAX][MAX], int n, int startnode);
+void main()
+{
+    int G[MAX][MAX], i, j, n, u;
+    printf("Enter no. of vertices: ");
+    scanf("%d", &n);
+    printf("Enter the adjacency matrix:\n");
+    for (i = 0; i < n; i++)
+        for (j = 0; j < n; j++)
+            scanf("%d", &G[i][j]);
+    printf("Enter the starting node: ");
+    scanf("%d", &u);
+    dijkstra(G, n, u);
+    getch();
+}
+void dijkstra(int G[MAX][MAX], int n, int startnode)
+{
+    int cost[MAX][MAX], distance[MAX], pred[MAX];
+    int visited[MAX], count, mindistance, nextnode, i, j;
+    for (i = 0; i < n; i++)
+        for (j = 0; j < n; j++)
+            if (G[i][j] == 0)
+                cost[i][j] = alpha;
+            else
+                cost[i][j] = G[i][j];
+    for (i = 0; i < n; i++)
+    {
+        distance[i] = cost[startnode][i];
+        pred[i] = startnode;
+        visited[i] = 0;
+    }
+    distance[startnode] = 0;
+    visited[startnode] = 1;
+    count = 1;
+    while (count < n - 1)
+    {
+        mindistance = alpha;
+        for (i = 0; i < n; i++)
+            if (distance[i] < mindistance && !visited[i])
+            {
+                mindistance = distance[i];
+                nextnode = i;
+            }
+        visited[nextnode] = 1;
+        for (i = 0; i < n; i++)
+            if (!visited[i])
+                if (mindistance + cost[nextnode][i] < distance[i])
+                {
+                    distance[i] = mindistance +
+                                  cost[nextnode][i];
+                    pred[i] = nextnode;
+                }
+        count++;
+    }
+    for (i = 0; i < n; i++)
+        if (i != startnode)
+        {
+            printf("\nDistance to node%d = %d", i,
+                   distance[i]);
+            printf("\nPath = %d", i);
+            j = i;
+            do
+            {
+                j = pred[j];
+                printf("<-%d", j);
+            } while (j != startnode);
+        }
+}
+
+output :
+
+Enter no. of vertices: 5
+Enter the adjacency matrix:
+0 10 0 30 100
+10 0 20 0 0
+0 20 0 50 20
+40 0 30 0 70
+90 0 0 50 0
+Enter the starting node: 0
+
+Distance to node1 = 10
+Path = 1<-0
+Distance to node2 = 30
+Path = 2<-1<-0
+Distance to node3 = 30
+Path = 3<-0
+Distance to node4 = 50
+Path = 4<-2<-1<-0
+`;
+    const n = `def is_attack(i, j, board, N):
+  # checking for column j
+  for k in range(1, i):
+    if(board[k][j] == 1):
+      return True
+
+  # checking upper right diagonal
+  k = i-1
+  l = j+1
+  while (k>=1 and l<=N):
+    if (board[k][l] == 1):
+      return True
+    k=k+1
+    l=l+1
+
+  # checking upper left diagonal
+  k = i-1
+  l = j-1
+  while (k>=1 and l>=1):
+    if (board[k][l] == 1):
+      return True
+    k=k-1
+    l=l-1
+
+  return False
+
+def n_queen(row, n, N, board):
+  if (n==0):
+    return True
+
+  for j in range(1, N+1):
+    if(not(is_attack(row, j, board, N))):
+      board[row][j] = 1
+
+      if (n_queen(row+1, n-1, N, board)):
+        return True
+
+      board[row][j] = 0 #backtracking
+  return False
+
+if __name__ == '__main__':
+  board = [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]]
+
+  n_queen(1, 4, 4, board)
+
+  #printing the matix
+  for i in range(1, 5):
+      print(board[i][1:])
+
+
+Output:
+
+[0, 1, 0, 0]
+[0, 0, 0, 1]
+[1, 0, 0, 0]
+[0, 0, 1, 0]
+`;
+    const o = `#include<stdio.h>
+int a[10][10],n,visit[10];
+int cost_opt=0,cost_apr=0;
+int least_apr(int c);
+int least_opt(int c);
+
+void mincost_opt(int city)
+{
+            int i,ncity;
+            visit[city]=1;
+            printf("%d-->",city);
+            ncity=least_opt(city);
+            if(ncity==999)
+            {
+                        ncity=1;
+                        printf("%d",ncity);
+                        cost_opt+=a[city][ncity];
+                        return;
+            }
+            mincost_opt(ncity);
+}
+ void mincost_apr(int city)
+ {
+            int i,ncity;
+            visit[city]=1;
+            printf("%d-->",city);
+            ncity=least_apr(city);
+            if(ncity==999)
+            {
+                        ncity=1;
+                        printf("%d",ncity);
+                        cost_apr+=a[city][ncity];
+                        return;
+            }
+            mincost_apr(ncity);
+}
+
+int least_opt(int c)
+{
+            int i,nc=999;
+            int min=999,kmin=999;
+            for(i=1;i<=n;i++)
+            {
+                        if((a[c][i]!=0)&&(visit[i]==0))
+                        if(a[c][i]<min)
+                        {
+                                    min=a[i][1]+a[c][i];
+                                    kmin=a[c][i];
+                                    nc=i;
+                        }
+            }
+            if(min!=999)
+                        cost_opt+=kmin;
+            return nc;
+}
+
+int least_apr(int c)
+{
+            int i,nc=999;
+            int min=999,kmin=999;
+for(i=1;i<=n;i++)
+            {
+                        if((a[c][i]!=0)&&(visit[i]==0))
+                                    if(a[c][i]<kmin)
+                                    {
+                                                min=a[i][1]+a[c][i];
+                                                kmin=a[c][i];
+                                                nc=i;
+                                    }
+            }
+            if(min!=999)
+                        cost_apr+=kmin;
+            return nc;
+}
+ void main()
+{
+            int i,j;
+            printf("Enter No. of cities:\n");
+            scanf("%d",&n);
+
+            printf("Enter the cost matrix\n");
+            for(i=1;i<=n;i++)
+            {
+                        printf("Enter elements of row:%d\n",i );
+                        for(j=1;j<=n;j++)
+                                    scanf("%d",&a[i][j]);
+                        visit[i]=0;
+            }
+            printf("The cost list is \n");
+            for(i=1;i<=n;i++)
+            {
+                        printf("\n\n");
+                        for(j=1;j<=n;j++)
+                                    printf("\t%d",a[i][j]);
+            }
+            printf("\n\n Optimal Solution :\n");
+            printf("\n The path is :\n");
+            mincost_opt(1);
+            printf("\n Minimum cost:");
+            printf("%d",cost_opt);
+
+            printf("\n\n Approximated Solution :\n");
+            for(i=1;i<=n;i++)
+                        visit[i]=0;
+            printf("\n  The path is :\n");
+            mincost_apr(1);
+            printf("\nMinimum cost:");
+            printf("%d",cost_apr);
+            printf("\n\nError in approximation is approximated solution/optimal solution=%f",
+                        (float)cost_apr/cost_opt);
+}
+
+
+OUTPUT :
+
+Enter No. of cities:
+4
+Enter the cost matrix
+Enter elements of row:1
+0 1 3 6
+Enter elements of row:2
+1 0 2 3
+Enter elements of row:3
+3 2 0 1
+Enter elements of row:4
+6 3 1 0
+
+The cost list is
+
+            0          1          3          6
+
+            1          0          2          3
+
+            3          2          0          1
+
+            6          3          1          0
+
+ Optimal Solution :
+
+ The path is :
+1-->2-->4-->3-->1
+ Minimum cost:8
+
+ Approximated Solution :
+
+  The path is :
+1-->2-->3-->4-->1
+Minimum cost:10
+`;
+    const p = `import random
+
+def kthSmallest(arr, l, r, k):
+    if (k > 0 and k <= r - l + 1):
+        pos = randomPartition(arr, l, r)
+
+        if (pos - l == k - 1):
+            return arr[pos]
+        if (pos - l > k - 1):
+            return kthSmallest(arr, l, pos - 1, k)
+ 
+        return kthSmallest(arr, pos + 1, r,
+                        k - pos + l - 1)
+
+    return 999999999999
+ 
+def swap(arr, a, b):
+    temp = arr[a]
+    arr[a] = arr[b]
+    arr[b] = temp
+
+def partition(arr, l, r):
+    x = arr[r]
+    i = l
+    for j in range(l, r):
+        if (arr[j] <= x):
+            swap(arr, i, j)
+            i += 1
+    swap(arr, i, r)
+    return i
+def randomPartition(arr, l, r):
+    n = r - l + 1
+    pivot = int(random.random() * n)
+    swap(arr, l + pivot, r)
+    return partition(arr, l, r)
+
+if __name__ == '__main__':
+ 
+    arr = [-5, 5, -4, 4, -3, 3, -2, 2, -1, 1, 0]
+    n = len(arr)
+    k = 3
+    print("array =", arr)
+    print("k =", k)
+    print("K'th smallest element is",kthSmallest(arr, 0, n - 1, k))
+ 
+
+Output :
+
+array = [12, 3, 5, 7, 4, 19, 26]
+k = 3
+K'th smallest element is 5
+
+array = [-5, 3, 6, 7, 2, 9, -10, 5]
+k = 6
+K'th smallest element is 6
+
+array = [-5, 5, -4, 4, -3, 3, -2, 2, -1, 1, 0]
+k = 3
+K'th smallest element is -3
+`;
+
+    function copyText(text) {
+      navigator.clipboard.writeText(text)
+        .then(() => console.log("Copied"))
+        .catch(err => console.error("Failed to copy", err));
+    }
+  </script>
+
+</body>
+</html>
